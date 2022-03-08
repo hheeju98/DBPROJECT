@@ -4,16 +4,16 @@
 <div class="container mt-3">
 
     <!-- 회원수정 폼 시작 -->
-    <!--폼태그는 put, delete 요청을 할 수 없다. 그래서 자바 스크립트로 제어해야 한다.-->
+    <!-- 폼 태그는 put, delete 요청을 할 수 없다. 그래서 자바스크립트로 제어해야 한다. -->
     <form>
         <div class="mb-3 mt-3">
-            <input type="text" class="form-control" value="ssar" id="username">
+            <input type="text" class="form-control" value="{{principal.username}}" id="username" readonly>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" value="1234" id="password">
+            <input type="password" class="form-control" value="{{principal.password}}" id="password" required>
         </div>
         <div class="mb-3">
-            <input type="email" class="form-control" value="ssar@nate.coml" id="email">
+            <input type="email" class="form-control" value="{{principal.email}}" id="email" required>
         </div>
         <button type="button" class="btn btn-dark" onclick="update()">수정완료</button>
     </form>
@@ -21,10 +21,12 @@
 
 </div>
 <!-- 컨테이너 끝 -->
+
 <script>
-   function update(){
-    let usernameDom =  document.querySelector("#username");
-   console.log(usernameDom);
-   }
-    </script>
+    function update() {
+        let usernameDom = document.querySelector("#username");
+        console.log(usernameDom);
+    }
+</script>
+
 {{> /layout/footer}}

@@ -9,8 +9,10 @@ server:
 # hibernate 기술을 쉡게 사용하게 해주는 라이브러리가 JPA이다.
 # ddl-auto: create는 서버 실행할 때마다 테이블을 삭제하고 새로 만드는 설정이다.
 # ddl-auto: none은 서버 실행할 때마다 아무것도 하지 않는 옵션이다.
-# ddl-auto: update는 필드 수정시에 필요한 옵션이다.
+# ddl-auto: update는 필드 수정시에 필요한 옵션이다. (필드 삭제하려면 DB에서 직접 하세요!)
 spring:
+  mustache:
+      expose-session-attributes: true
   datasource:
       url: jdbc:mariadb://localhost:3306/greendb
       driver-class-name: org.mariadb.jdbc.Driver
@@ -20,7 +22,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       #none   (테이블 만들어지면 none으로 바꾸기 / 테이블변경 필요없을때)
       #update
       #create (필드추가할때 / 테이블변경할때)

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,18 +12,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import org.apache.catalina.User;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-//테이블은 entity다
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import site.metacoding.dbproject.domain.user.User;
+
+//테이블은 entitiy다.
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(length = 300, nullable = false)
     private String title;
 
-    // String clob int blob
+    // String CLOB int BLOB
     @Lob // CLOB 4GB 문자 타입
     @Column(nullable = false)
     private String content;
@@ -31,5 +44,8 @@ public class Post {
     @ManyToOne
     private User user;
 
+    @CreatedDate // insert
     private LocalDateTime createDate;
+    @LastModifiedDate // insert, update
+    private LocalDateTime updateDate;
 }
