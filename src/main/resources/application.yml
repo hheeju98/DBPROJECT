@@ -31,6 +31,8 @@ spring:
         #model.naming 그대로 따라가라는 뜻 (자바표기법)
         #밑에꺼는 언더스콥
     show-sql: true
+    properties:
+     hibernate.format_sql: true
     
   output:
     ansi:
